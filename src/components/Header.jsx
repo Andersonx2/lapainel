@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react'
-import { Menu, X, Phone, Mail } from 'lucide-react'
+import { Menu, X, Phone, Mail, LogOut } from 'lucide-react'
 
 const Header = ({ onContactClick }) => {
   const [isMenuOpen, setIsMenuOpen] = useState(false)
@@ -13,6 +13,11 @@ const Header = ({ onContactClick }) => {
     window.addEventListener('scroll', handleScroll)
     return () => window.removeEventListener('scroll', handleScroll)
   }, [])
+
+  const handleLogout = () => {
+    localStorage.removeItem('lapainel_authenticated')
+    window.location.reload()
+  }
 
   const navItems = [
     { name: 'Início', href: '#home' },
@@ -43,8 +48,16 @@ const Header = ({ onContactClick }) => {
                 <span>lapainelsolar@gmail.com</span>
               </div>
             </div>
-            <div className="hidden md:block">
+            <div className="hidden md:flex items-center space-x-4">
               <span className="text-primary-100">Especialistas em Energia Solar</span>
+              <button
+                onClick={handleLogout}
+                className="flex items-center space-x-1 text-primary-100 hover:text-white transition-colors"
+                title="Sair do site"
+              >
+                <LogOut size={14} />
+                <span>Sair</span>
+              </button>
             </div>
           </div>
         </div>
@@ -122,6 +135,16 @@ const Header = ({ onContactClick }) => {
                 className="btn-primary w-full mt-4"
               >
                 Solicitar Orçamento
+              </button>
+              <button
+                onClick={() => {
+                  handleLogout()
+                  setIsMenuOpen(false)
+                }}
+                className="flex items-center justify-center space-x-2 text-red-600 hover:text-red-700 font-medium py-2 transition-colors duration-200"
+              >
+                <LogOut size={16} />
+                <span>Sair do Site</span>
               </button>
             </div>
           </div>

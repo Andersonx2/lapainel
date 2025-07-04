@@ -12,9 +12,17 @@ import Contact from './components/Contact'
 import Footer from './components/Footer'
 import WhatsAppButton from './components/WhatsAppButton'
 import LeadForm from './components/LeadForm'
+import PasswordProtection from './components/PasswordProtection'
 
 function App() {
   const [showLeadForm, setShowLeadForm] = useState(false)
+  const [isAuthenticated, setIsAuthenticated] = useState(false)
+
+  useEffect(() => {
+    // Verificar se já está autenticado
+    const authenticated = localStorage.getItem('lapainel_authenticated') === 'true'
+    setIsAuthenticated(authenticated)
+  }, [])
 
   useEffect(() => {
     // Scroll suave para links internos
@@ -32,6 +40,15 @@ function App() {
     document.addEventListener('click', handleAnchorClick)
     return () => document.removeEventListener('click', handleAnchorClick)
   }, [])
+
+  const handleAuthenticationSuccess = () => {
+    setIsAuthenticated(true)
+  }
+
+  // Se não estiver autenticado, mostrar tela de senha
+  if (!isAuthenticated) {
+    return <PasswordProtection onSuccess={handleAuthenticationSuccess} />
+  }
 
   return (
     <div className="min-h-screen bg-white">
