@@ -9,22 +9,22 @@ const Hero = ({ onContactClick }) => {
   ]
 
   return (
-    <section id="home" className="relative min-h-screen flex items-center pt-32 pb-16 overflow-hidden">
+    <section id="home" className="relative min-h-screen flex items-center pt-32 pb-16 overflow-hidden w-full">
       {/* Background com gradiente */}
-      <div className="absolute inset-0 gradient-bg opacity-10"></div>
+      <div className="absolute inset-0 gradient-bg opacity-10 w-full"></div>
       
       {/* Elementos decorativos */}
-      <div className="absolute top-20 left-10 w-20 h-20 bg-primary-200 rounded-full opacity-20 animate-pulse-slow"></div>
-      <div className="absolute bottom-20 right-10 w-32 h-32 bg-secondary-200 rounded-full opacity-20 animate-pulse-slow"></div>
+      <div className="absolute top-20 left-10 w-20 h-20 bg-primary-200 rounded-full opacity-20 animate-pulse-slow hidden sm:block"></div>
+      <div className="absolute bottom-20 right-10 w-32 h-32 bg-secondary-200 rounded-full opacity-20 animate-pulse-slow hidden sm:block"></div>
       
-      <div className="container-custom relative z-10">
-        <div className="grid lg:grid-cols-2 gap-12 items-center">
+      <div className="container-custom relative z-10 w-full">
+        <div className="grid lg:grid-cols-2 gap-8 lg:gap-12 items-center w-full">
           {/* Conteúdo principal */}
           <motion.div
             initial={{ opacity: 0, x: -50 }}
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.8 }}
-            className="space-y-8"
+            className="space-y-8 w-full"
           >
             {/* Badge de destaque */}
             <motion.div
@@ -169,57 +169,52 @@ const Hero = ({ onContactClick }) => {
             initial={{ opacity: 0, x: 50 }}
             animate={{ opacity: 1, x: 0 }}
             transition={{ delay: 0.4, duration: 0.8 }}
-            className="relative"
+            className="relative w-full"
           >
-            <div className="relative bg-gradient-to-br from-primary-50 to-secondary-50 rounded-2xl p-8 shadow-2xl">
-              {/* Placeholder para imagem de painéis solares */}
-              <div className="aspect-square bg-gradient-to-br from-primary-100 to-primary-200 rounded-xl flex items-center justify-center">
-                <div className="text-center space-y-4">
-                  <div className="w-16 h-16 bg-primary-600 rounded-lg mx-auto flex items-center justify-center">
-                    <Zap size={32} className="text-white" />
-                  </div>
-                  <div className="space-y-2">
-                    <div className="h-4 bg-primary-200 rounded w-3/4 mx-auto"></div>
-                    <div className="h-4 bg-primary-200 rounded w-1/2 mx-auto"></div>
-                  </div>
-                </div>
+            <div className="relative bg-gradient-to-br from-primary-50 to-secondary-50 rounded-2xl p-4 sm:p-8 shadow-2xl w-full max-w-full overflow-x-hidden">
+              {/* Imagem real da empresa */}
+              <div className="aspect-square rounded-xl overflow-hidden shadow-lg w-full max-w-full">
+                <img 
+                  src="https://www.lapainelsolar.com.br/img/gallery-5.jpg" 
+                  alt="Instalação de painéis solares pela L&A Painel Solar em Santa Catarina"
+                  className="w-full h-full object-cover"
+                  loading="eager"
+                />
+                {/* Overlay sutil para melhorar legibilidade dos cards */}
+                <div className="absolute inset-0 bg-gradient-to-t from-black/10 to-transparent"></div>
               </div>
-              
-              {/* Card flutuante com estatísticas */}
+              {/* Cards flutuantes */}
               <motion.div
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: 1, duration: 0.6 }}
-                className="absolute -bottom-6 -left-6 bg-white rounded-xl p-4 shadow-lg border border-gray-100"
+                className="absolute -bottom-3 sm:-bottom-6 -left-3 sm:-left-6 bg-white rounded-xl p-3 sm:p-4 shadow-lg border border-gray-100 w-32 max-w-[90vw]"
               >
                 <div className="text-center">
-                  <div className="text-2xl font-bold text-primary-600">95%</div>
-                  <div className="text-sm text-dark-600">Economia média</div>
+                  <div className="text-lg sm:text-2xl font-bold text-primary-600">95%</div>
+                  <div className="text-xs sm:text-sm text-dark-600">Economia média</div>
                 </div>
               </motion.div>
-              
               <motion.div
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: 1.2, duration: 0.6 }}
-                className="absolute -top-6 -right-6 bg-white rounded-xl p-4 shadow-lg border border-gray-100"
+                className="absolute -top-3 sm:-top-6 -right-3 sm:-right-6 bg-white rounded-xl p-3 sm:p-4 shadow-lg border border-gray-100 w-32 max-w-[90vw]"
               >
                 <div className="text-center">
-                  <div className="text-2xl font-bold text-secondary-600">25</div>
-                  <div className="text-sm text-dark-600">Anos garantia</div>
+                  <div className="text-lg sm:text-2xl font-bold text-secondary-600">25</div>
+                  <div className="text-xs sm:text-sm text-dark-600">Anos garantia</div>
                 </div>
               </motion.div>
-
-              {/* Card de oferta especial */}
               <motion.div
                 initial={{ opacity: 0, scale: 0.8 }}
                 animate={{ opacity: 1, scale: 1 }}
                 transition={{ delay: 1.4, duration: 0.6 }}
-                className="absolute -bottom-6 -right-6 bg-gradient-to-r from-red-500 to-red-600 text-white rounded-xl p-4 shadow-lg"
+                className="absolute -bottom-3 sm:-bottom-6 -right-3 sm:-right-6 bg-gradient-to-r from-red-500 to-red-600 text-white rounded-xl p-3 sm:p-4 shadow-lg w-32 max-w-[90vw]"
               >
                 <div className="text-center">
-                  <div className="text-lg font-bold">OFERTA</div>
-                  <div className="text-sm">Instalação GRÁTIS</div>
+                  <div className="text-sm sm:text-lg font-bold">OFERTA</div>
+                  <div className="text-xs sm:text-sm">Instalação GRÁTIS</div>
                 </div>
               </motion.div>
             </div>
